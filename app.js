@@ -81,7 +81,7 @@ const menu = [
   }
 ];
 const menuContainer = document.querySelector(".menu-item-container");
-
+const filterBtns = document.querySelectorAll(".filter-btn");
 function displayMenuItem(item){
   let menuItems = item.map(data => {
     return `
@@ -103,4 +103,23 @@ function displayMenuItem(item){
   menuContainer.innerHTML = menuItems;
 }
 
+function filterMenu(e){
+  const category = e.currentTarget.dataset.id;
+  const menuCategory = menu.filter(menuItem => {
+    if(menuItem.category === category){
+      return menuItem;
+    }
+  });
+
+  if(category === "all"){
+    displayMenuItem(menu);
+    return;
+  }
+
+  displayMenuItem(menuCategory);
+}
+
 displayMenuItem(menu);
+filterBtns.forEach(filterBtn => {
+  filterBtn.addEventListener("click", filterMenu);
+})
