@@ -80,15 +80,17 @@ const menu = [
     "desc": "skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing."
   }
 ];
+const menuContainer = document.querySelector(".menu-item-container");
 
 function displayMenuItem(item){
-  let displayMenuItem = item.map(data => {
+  let menuItems = item.map(data => {
     return `
       <div class="menu-item">
         <img src="${data.img}" class="menu-photo" alt="Menu photo">
         <div class="menu-info">
-          <heade${data.title}</h4>
-            <h4 class="menu-price">${data.price}</h4>
+          <header>
+            <h4>${data.title}</h4>
+            <h4 class="menu-price">$${data.price}</h4>
           </header>
           <div class="menu-text">
             ${data.desc}
@@ -97,9 +99,8 @@ function displayMenuItem(item){
       </div>
     `
   });
-  displayMenuItem = displayMenuItem.join("");
-  console.log(displayMenuItem);
-
+  menuItems = menuItems.join("");
+  menuContainer.innerHTML = menuItems;
 }
 
 displayMenuItem(menu);
